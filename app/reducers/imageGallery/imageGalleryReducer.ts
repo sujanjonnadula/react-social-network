@@ -6,12 +6,10 @@ import { User } from 'domain/users'
 import { Image } from 'domain/imageGallery'
 
 // - Import image gallery action types
-import {ImageGalleryActionType} from 'constants/imageGalleryActionType'
-
+import { ImageGalleryActionType } from 'constants/imageGalleryActionType'
 
 import { IImageGalleryAction } from './IImageGalleryAction'
 import { ImageGalleryState } from './ImageGalleryState'
-
 
 /**
  *  Image gallery reducer
@@ -27,11 +25,11 @@ export let imageGalleryReducer = (state: ImageGalleryState = new ImageGallerySta
         images: [...state.images!, payload.image]
       }
     case ImageGalleryActionType.ADD_IMAGE_LIST_GALLERY:
-        return {
-          ...state,
-          images: [...payload],
-          loaded: true
-        }
+      return {
+        ...state,
+        images: [...payload],
+        loaded: true
+      }
 
     case ImageGalleryActionType.DELETE_IMAGE:
       return {
@@ -56,14 +54,12 @@ export let imageGalleryReducer = (state: ImageGalleryState = new ImageGallerySta
         ...state,
         imageRequests: [
           ...state.imageRequests,
-              payload
+          payload
         ]
       }
 
     case ImageGalleryActionType.CLEAT_ALL_DATA_IMAGE_GALLERY:
       return new ImageGalleryState()
-
-
 
     default:
       return state

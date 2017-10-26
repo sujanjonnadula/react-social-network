@@ -88,7 +88,10 @@ export const globalReducer = (state: GlobalState = new GlobalState(), action: IG
         ...state,
         temp: {
           ...state.temp,
-          ...payload
+          caller: [
+            ...state.temp.caller,
+            payload.caller
+          ]
         }
       }
 

@@ -146,10 +146,20 @@ export const hideTopLoading = () => {
 /**
  * Store temp data
  */
-export const temp = (data: string) => {
+export const temp = (data: any) => {
   return{
     type: GlobalActionType.TEMP,
     payload: data
+  }
+
+}
+
+/**
+ * Clear temp data
+ */
+export const clearTemp = () => {
+  return{
+    type: GlobalActionType.CLEAR_TEMP
   }
 
 }

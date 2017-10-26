@@ -207,5 +207,4 @@ export const sendImageRequest = (name: string) => {
     payload: name
   }
 
-
 }

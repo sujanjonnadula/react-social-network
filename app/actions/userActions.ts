@@ -26,7 +26,6 @@ export const dbGetUserInfo = () => {
   return (dispatch: any, getState: Function) => {
     let uid: string = getState().authorize.uid
     if (uid) {
-
       return userService.getUserProfile(uid).then((userProfile: Profile) => {
         dispatch(addUserInfo(uid, {
           avatar: userProfile.avatar,
@@ -48,9 +47,14 @@ export const dbGetUserInfo = () => {
  * @param {string} callerKey
  */
 export const dbGetUserInfoByUserId = (uid: string, callerKey: string) => {
-  return (dispatch: any, getState: Function) => {
+  return (dispatch: Function, getState: Function) => {
     if (uid) {
 
+      let caller = getState().global.temp.caller
+      if ( caller && caller.indexOf(`dbGetUserInfoByUserId-${uid}`) > -1) {
+        return
+      }
+      dispatch(globalActions.temp({caller: `dbGetUserInfoByUserId-${uid}`}))
       return userService.getUserProfile(uid).then((userProfile: Profile) => {
 
         dispatch(addUserInfo(uid, {

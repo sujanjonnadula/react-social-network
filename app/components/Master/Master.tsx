@@ -18,7 +18,6 @@ import { IMasterProps } from './IMasterProps'
 import { IMasterState } from './IMasterState'
 
 // - Import API
-import { PrivateRoute, PublicRoute } from 'api/AuthRouterAPI'
 
 // - Import actions
 import {
@@ -175,6 +174,7 @@ const mapDispatchToProps = (dispatch: any, ownProps: any) => {
       dispatch(voteActions.clearAllvotes())
       dispatch(notifyActions.clearAllNotifications())
       dispatch(circleActions.clearAllCircles())
+      dispatch(globalActions.clearTemp())
 
     },
     login: (user: any) => {
