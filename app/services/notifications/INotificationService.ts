@@ -10,7 +10,7 @@ import { Notification } from 'domain/notifications'
  */
 export interface INotificationService {
   addNotification: (notification: Notification) => Promise<void>
-  getNotifications: (userId: string) => Promise<{[notifyId: string]: Notification}>
+  getNotifications: (userId: string, callback: (resultNotifications: {[notifyId: string]: Notification}) => void) => void
   deleteNotification: (notificationId: string, userId: string) => Promise<void>
   setSeenNotification: (notificationId: string, userId: string, notification: Notification) => Promise<void>
 }

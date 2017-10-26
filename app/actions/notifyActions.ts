@@ -53,15 +53,14 @@ export const dbGetNotifications = () => {
   return (dispatch: any, getState: Function) => {
     let uid: string = getState().authorize.uid
     if (uid) {
-
-      return notificationService.getNotifications(uid)
-        .then((notifies: { [notifyId: string]: Notification }) => {
-          Object.keys(notifies).forEach((key => {
-            if (!getState().user.info[notifies[key].notifierUserId]) {
-              dispatch(userActions.dbGetUserInfoByUserId(notifies[key].notifierUserId,''))
+      return notificationService.getNotifications(uid,
+        (notifications: { [notifyId: string]: Notification} ) => {
+          Object.keys(notifications).forEach((key => {
+            if (!getState().user.info[notifications[key].notifierUserId]) {
+              dispatch(userActions.dbGetUserInfoByUserId(notifications[key].notifierUserId,''))
             }
           }))
-          dispatch(addNotifyList(notifies))
+          dispatch(addNotifyList(notifications))
         })
     }
   }

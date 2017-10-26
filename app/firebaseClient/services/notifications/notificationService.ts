@@ -28,19 +28,17 @@ export class NotificationService implements INotificationService {
         })
       }
 
-  public getNotifications: (userId: string)
-  => Promise<{ [notifyId: string]: Notification }> = (userId) => {
-    return new Promise<{ [notifyId: string]: Notification }>((resolve,reject) => {
-      let notifiesRef: any = firebaseRef.child(`userNotifies/${userId}`)
-      notifiesRef.on('value', (snapshot: any) => {
-        let notifies: {[notifyId: string]: Notification} = snapshot.val() || {}
-        resolve(notifies)
-      })
-    })
-  }
+  public getNotifications: (userId: string, callback: (resultNotifications: {[notifyId: string]: Notification}) => void)
+      => void = (userId,callback) => {
+        let notificationsRef = firebaseRef.child(`userNotifies/${userId}`)
+        notificationsRef.on('value', (snapshot: any) => {
+          let notifications: {[notifyId: string]: Notification} = snapshot.val() || {}
+          callback(notifications)
+        })
+      }
 
   public deleteNotification: (notificationId: string, userId: string)
-    => Promise <void> = (notificationId, userId) => {
+    => Promise < void > = (notificationId, userId) => {
       return new Promise<void>((resolve, reject) => {
         let updates: any = {}
         updates[`userNotifies/${userId}/${notificationId}`] = null
@@ -55,7 +53,7 @@ export class NotificationService implements INotificationService {
     }
 
   public setSeenNotification: (notificationId: string, userId: string, notification: Notification)
-    => Promise <void> = (notificationId, userId, notification) => {
+    => Promise < void > = (notificationId, userId, notification) => {
       return new Promise<void>((resolve, reject) => {
         let updates: any = {}
         updates[`userNotifies/${userId}/${notificationId}`] = notification
