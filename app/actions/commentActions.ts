@@ -74,13 +74,8 @@ export const dbGetComments = () => {
   return (dispatch: any, getState: Function) => {
     let uid: string = getState().authorize.uid
     if (uid) {
-
-      return commentService.getComments()
-      .then((comments: {[postId: string]: {[commentId: string]: Comment}}) => {
+      return commentService.getComments((comments: {[postId: string]: {[commentId: string]: Comment}}) => {
         dispatch(addCommentList(comments))
-      })
-      .catch((error: SocialError) => {
-        dispatch(globalActions.showErrorMessage(error.message))
       })
     }
   }

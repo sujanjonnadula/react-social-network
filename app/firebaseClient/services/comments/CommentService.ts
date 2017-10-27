@@ -26,14 +26,12 @@ export class CommentService implements ICommentService {
       })
     }
 
-  public getComments: ()
-    => Promise<{ [postId: string]: { [commentId: string]: Comment } }> = () => {
-      return new Promise<{ [postId: string]: { [commentId: string]: Comment }}>((resolve,reject) => {
-        let commentsRef: any = firebaseRef.child(`postComments`)
-        commentsRef.on('value', (snapshot: any) => {
-          let comments: {[postId: string]: {[commentId: string]: Comment}} = snapshot!.val() || {}
-          resolve(comments)
-        })
+  public getComments: (callback: (resultComments: { [postId: string]: { [commentId: string]: Comment } }) => void)
+    => void = (callback) => {
+      let commentsRef: any = firebaseRef.child(`postComments`)
+      commentsRef.on('value', (snapshot: any) => {
+        let comments: {[postId: string]: {[commentId: string]: Comment}} = snapshot!.val() || {}
+        callback(comments)
       })
     }
 
