@@ -38,9 +38,13 @@ export class ProfileHead extends Component {
          */
         avatar: PropTypes.string,
         /**
-         * User avatar address
+         * User banner address
          */
         banner: PropTypes.string,
+        /**
+         * User tagline 
+         */
+        tagLine: PropTypes.string,
         /**
          * User full name
          */
@@ -197,6 +201,9 @@ export class ProfileHead extends Component {
                         <div className='info'>
                             <div className='fullName'>
                                 {this.props.fullName}
+                            </div>
+                            <div className='tagLine'>
+                                {this.props.tagLine}
                             </div>
                             {/*<div className='followers'>
                                 {this.props.followerCount} Followers

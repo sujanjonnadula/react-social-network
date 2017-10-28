@@ -103,8 +103,7 @@ export class Profile extends Component {
     return (
       <div style={styles.profile}>
         <div style={styles.header}>
-
-          <ProfileHead avatar={this.props.avatar} isAuthedUser={this.props.isAuthedUser} banner={this.props.banner} fullName={this.props.name} followerCount={0} userId={this.props.userId}/>
+          <ProfileHead tagLine={this.props.tagLine} avatar={this.props.avatar} isAuthedUser={this.props.isAuthedUser} banner={this.props.banner} fullName={this.props.name} followerCount={0} userId={this.props.userId}/>
         </div>
         {this.props.posts && Object.keys(this.props.posts).length !==0 
         ? (<div style={styles.content}>
@@ -154,6 +153,7 @@ const mapStateToProps = (state, ownProps) => {
     avatar: state.user.info && state.user.info[userId] ? state.user.info[userId].avatar || '' : '',
     name: state.user.info && state.user.info[userId] ? state.user.info[userId].fullName || '' : '',
     banner: state.user.info && state.user.info[userId] ? state.user.info[userId].banner || '' : '',
+    tagLine: state.user.info && state.user.info[userId] ? state.user.info[userId].tagLine || '' : '',
     posts: state.post.userPosts ? state.post.userPosts[userId] : {},
     isAuthedUser: userId === uid,
     userId
