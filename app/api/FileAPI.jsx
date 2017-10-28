@@ -25,7 +25,6 @@ const convertImageToCanvas = (image) => {
  * @param {string} fileName 
  */
 const uploadImage = (file, fileName, progress) => {
-    
         return new Promise((resolve, reject) => {
             // Create a storage refrence
             let storegeFile = storageRef.child(`images/${fileName}`)

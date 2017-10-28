@@ -22,7 +22,7 @@ export let imageGalleryReducer = (state: ImageGalleryState = new ImageGallerySta
     case ImageGalleryActionType.ADD_IMAGE_GALLERY:
       return {
         ...state,
-        images: [...state.images!, payload.image]
+        images: [...state.images!, payload]
       }
     case ImageGalleryActionType.ADD_IMAGE_LIST_GALLERY:
       return {
@@ -36,7 +36,7 @@ export let imageGalleryReducer = (state: ImageGalleryState = new ImageGallerySta
         ...state,
         images: [
           ...state.images!.filter((item: Image) => {
-            return item.id !== payload.id
+            return item.id !== payload
           })
         ]
       }
