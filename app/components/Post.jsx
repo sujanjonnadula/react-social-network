@@ -401,7 +401,7 @@ static propTypes = {
               <Checkbox
                                 checkedIcon={<SvgFavorite style={{fill:'#4CAF50'}}/>}
                                 uncheckedIcon={<SvgFavoriteBorder style={{fill:'#757575'}} />}
-                                defaultChecked={this.props.userVoteStatus}
+                                checked={this.props.userVoteStatus}
                                 style={{transform: 'translate(6px, 6px)'}}
                             />
                 </div>
