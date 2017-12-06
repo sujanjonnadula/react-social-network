@@ -101,7 +101,7 @@ I recommend that you get to know React before using React Social Network. React 
 
  5. Installing all nodejs modules:
   `npm install`
- 6. Rub webpack to build bundle file
+ 6. Run webpack to build bundle file
   `webpack`
  5. Running server:
   `node server.js`
